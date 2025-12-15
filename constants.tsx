@@ -71,7 +71,7 @@ export const PROFILE = {
   name: "Dr. CT Lin (林峻霆)",
   title: "Chief Operating Officer, OCIC, NTHU",
   tagline: "Bridging Deep-Tech Innovation and Commercial Success.",
-  bio: `I am a seasoned professional with 15+ years of multidisciplinary experience spanning deep-tech startups, industry-academic collaboration, and national innovation policy. Currently serving as the Chief Operating Officer at National Tsing Hua University's Operations Center for Industry Collaboration, I specialize in open innovation ecosystems, patent commercialization, and deep-tech startup acceleration. My background includes pivotal roles in government think tanks and cross-border biotech ventures, with technical expertise in BNCT, nanomaterials, and electro-chemistry.`,
+  bio: `I am a seasoned professional with 15+ years of multidisciplinary experience spanning deep-tech startups, industry-academic collaboration, and national innovation policy. Currently serving as the Chief Operating Officer at National Tsing Hua University's Operations Center for Industry Collaboration, I specialize in open innovation ecosystems, IP deployment & commercialization, and deep-tech startup acceleration. My background includes pivotal roles in government think tanks and cross-border biotech ventures, with technical expertise in BNCT, nanomaterials, surface science, and electro-chemistry.`,
   linkedin: "https://www.linkedin.com/in/CTLIN1983",
   email: "chuntinglin1983@gmail.com"
 };
