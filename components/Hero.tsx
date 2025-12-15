@@ -69,14 +69,14 @@ const Hero: React.FC = () => {
                 {/* Main Image Frame */}
                 <div className="relative w-full h-full bg-slate-800 rounded-lg overflow-hidden shadow-2xl border border-slate-700 z-10">
                    <img 
-                      src="https://drive.google.com/uc?export=view&id=1jfR6QkhtSbVV0QJ2MDzyh1oe-Tesvw_Y" 
+                      src="https://drive.google.com/thumbnail?id=1jfR6QkhtSbVV0QJ2MDzyh1oe-Tesvw_Y&sz=w1000" 
                       alt={PROFILE.name}
                       loading="eager"
                       onError={(e) => {
                         // Fallback in case the Google Drive link permission issue or quota limit
                         e.currentTarget.src = "https://placehold.co/600x800/1e293b/06b6d4?text=Dr.+C.T.+Lin";
                       }}
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
                    />
                 </div>
 
