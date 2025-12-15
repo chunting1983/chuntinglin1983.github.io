@@ -6,10 +6,20 @@ let genAI: GoogleGenAI | null = null;
 
 const getClient = (): GoogleGenAI => {
   if (!genAI) {
-    const apiKey = process.env.API_KEY;
+    // Safety check for process.env in browser environments
+    let apiKey: string | undefined;
+    try {
+      if (typeof process !== 'undefined' && process.env) {
+        apiKey = process.env.API_KEY;
+      }
+    } catch (e) {
+      console.warn("Could not access process.env", e);
+    }
+    
     if (!apiKey) {
       console.warn("Gemini API Key is missing. Chat functionality will be limited.");
     }
+    
     genAI = new GoogleGenAI({ apiKey: apiKey || 'dummy-key-for-ui-render' });
   }
   return genAI;
@@ -18,7 +28,7 @@ const getClient = (): GoogleGenAI => {
 export const initializeChat = async (): Promise<Chat> => {
   const ai = getClient();
   
-  // Reset session on re-init
+  // Create a new chat session
   chatSession = ai.chats.create({
     model: "gemini-2.5-flash",
     config: {
@@ -31,15 +41,15 @@ export const initializeChat = async (): Promise<Chat> => {
 };
 
 export const sendMessageToGemini = async function* (message: string) {
-  if (!chatSession) {
-    await initializeChat();
-  }
-
-  if (!chatSession) {
-    throw new Error("Failed to initialize chat session");
-  }
-
   try {
+    if (!chatSession) {
+      await initializeChat();
+    }
+
+    if (!chatSession) {
+      throw new Error("Failed to initialize chat session");
+    }
+
     const streamResult = await chatSession.sendMessageStream({ message });
     
     for await (const chunk of streamResult) {
@@ -47,8 +57,12 @@ export const sendMessageToGemini = async function* (message: string) {
         yield chunk.text;
       }
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error sending message to Gemini:", error);
-    yield "I apologize, but I'm having trouble connecting to the server right now. Please try again later or use the contact form.";
+    
+    // Reset session on error to prevent stuck state
+    chatSession = null;
+    
+    yield "I apologize, but I'm having trouble processing your request right now. This might be due to a connection issue or configuration. Please feel free to use the contact form to reach Dr. Lin directly.";
   }
 };

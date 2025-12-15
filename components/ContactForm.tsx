@@ -11,14 +11,36 @@ const ContactForm: React.FC = () => {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
+
+    // Construct the email content
+    const subject = `Meeting Request: ${formData.topic} - ${formData.name}`;
+    const body = `Name: ${formData.name}
+Email: ${formData.email}
+Topic: ${formData.topic}
+
+Message:
+${formData.message}
+
+------------------------------------------------
+Sent via ${PROFILE.name} Personal Website`;
+
+    // Create mailto link
+    // We CC the sender so they also have a copy (if their client supports it)
+    const mailtoLink = `mailto:${PROFILE.email}?cc=${encodeURIComponent(formData.email)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Small delay to show "Sending..." state before opening email client
     setTimeout(() => {
+      window.location.href = mailtoLink;
+      
       setStatus('success');
       setFormData({ name: '', email: '', topic: 'General Inquiry', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+      
+      // Reset status after a few seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    }, 800);
   };
 
   return (
@@ -72,6 +94,9 @@ const ContactForm: React.FC = () => {
 
           <div className="bg-white rounded p-8 lg:p-10 text-slate-900 shadow-2xl">
             <h3 className="text-2xl font-serif font-bold mb-6">Request a Meeting</h3>
+            <div className="mb-6 p-4 bg-blue-50 text-blue-800 text-sm rounded border border-blue-100">
+               Submitting this form will open your default email client with a pre-filled message to ensure direct communication.
+            </div>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
@@ -135,7 +160,7 @@ const ContactForm: React.FC = () => {
                 className={`w-full py-4 rounded font-bold uppercase tracking-wider text-sm transition-all ${
                   status === 'success' ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-primary-600 hover:bg-primary-700 text-white'}`}
               >
-                {status === 'submitting' ? 'Sending Request...' : status === 'success' ? 'Request Sent' : 'Book Meeting'}
+                {status === 'submitting' ? 'Preparing Email...' : status === 'success' ? 'Email Client Opened' : 'Book Meeting'}
               </button>
             </form>
           </div>
