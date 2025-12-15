@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'About', href: `#${SectionId.ABOUT}` },
-    { name: 'Expertise', href: `#${SectionId.SERVICES}` },
+    { name: 'Open Innovation', href: `#${SectionId.SERVICES}` },
     { name: 'Track Record', href: `#${SectionId.TRACK_RECORD}` },
     { name: 'Contact', href: `#${SectionId.CONTACT}` },
   ];
@@ -31,22 +31,14 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-md shadow-sm py-3 border-b border-white/10' : 'bg-transparent py-5'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-navy-950/95 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-6'}`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div className="flex-shrink-0 flex items-center gap-3">
-             {scrolled && (
-               <img 
-                 src="profile.jpg" 
-                 alt="C.T. Lin" 
-                 className="w-8 h-8 rounded-full border border-primary-500/50 object-cover animate-fade-in-up"
-                 onError={(e) => { e.currentTarget.style.display = 'none'; }} 
-               />
-             )}
+          <div className="flex-shrink-0 flex items-center">
              <a 
                 href={`#${SectionId.HOME}`}
                 onClick={(e) => scrollToSection(e, `#${SectionId.HOME}`)}
-                className={`text-2xl font-display font-bold tracking-tight text-white flex items-center`}
+                className="text-xl md:text-2xl font-serif font-bold tracking-tight text-white hover:text-primary-400 transition-colors"
              >
               {PROFILE.name}
             </a>
@@ -59,7 +51,7 @@ const Navbar: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className={`text-sm font-medium transition-colors text-slate-300 hover:text-tech-500`}
+                className="text-sm font-sans text-slate-300 hover:text-white transition-colors tracking-wide"
               >
                 {link.name}
               </a>
@@ -67,7 +59,7 @@ const Navbar: React.FC = () => {
             <a
               href={`#${SectionId.CONTACT}`}
               onClick={(e) => scrollToSection(e, `#${SectionId.CONTACT}`)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all transform hover:scale-105 bg-tech-500 text-slate-950 hover:bg-tech-600 shadow-[0_0_15px_rgba(0,240,255,0.3)]`}
+              className="px-5 py-2 rounded bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold transition-all shadow-md hover:shadow-primary-500/20"
             >
               Book Consultation
             </a>
@@ -77,7 +69,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-md text-white`}
+              className="p-2 text-white hover:text-primary-400 transition-colors"
             >
               {isOpen ? <Icons.Close /> : <Icons.Menu />}
             </button>
@@ -87,14 +79,14 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 shadow-lg border-t border-slate-800">
-          <div className="px-4 pt-2 pb-6 space-y-2">
+        <div className="md:hidden absolute top-full left-0 w-full bg-navy-900 shadow-xl border-t border-slate-800">
+          <div className="px-6 py-8 space-y-6 flex flex-col items-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:text-tech-500 hover:bg-slate-800"
+                className="text-xl font-serif font-medium text-white hover:text-primary-400"
               >
                 {link.name}
               </a>
@@ -102,7 +94,7 @@ const Navbar: React.FC = () => {
             <a
               href={`#${SectionId.CONTACT}`}
               onClick={(e) => scrollToSection(e, `#${SectionId.CONTACT}`)}
-              className="block mt-4 w-full text-center px-4 py-3 rounded-md text-base font-medium bg-tech-500 text-slate-950 hover:bg-tech-600"
+              className="w-full text-center px-6 py-3 rounded bg-primary-600 text-white font-semibold hover:bg-primary-700 mt-4"
             >
               Book Consultation
             </a>

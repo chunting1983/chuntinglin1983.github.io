@@ -40,10 +40,19 @@ export interface Publication {
   authors?: string; // Optional field for co-authors
 }
 
+export interface ResourceItem {
+  title: string;
+  description: string;
+  format: string;
+  size: string;
+  downloadUrl: string;
+}
+
 export enum SectionId {
   HOME = 'home',
   ABOUT = 'about',
   SERVICES = 'services',
   TRACK_RECORD = 'track-record',
+  RESOURCES = 'resources',
   CONTACT = 'contact',
 }
