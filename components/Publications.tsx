@@ -7,8 +7,14 @@ type TabType = 'patent' | 'paper';
 const Publications: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('patent');
 
-  const patents = PUBLICATIONS.filter(p => p.type === 'patent');
-  const papers = PUBLICATIONS.filter(p => p.type === 'paper');
+  // Filter and sort by date descending (newest first)
+  const patents = PUBLICATIONS
+    .filter(p => p.type === 'patent')
+    .sort((a, b) => parseInt(b.date) - parseInt(a.date));
+    
+  const papers = PUBLICATIONS
+    .filter(p => p.type === 'paper')
+    .sort((a, b) => parseInt(b.date) - parseInt(a.date));
 
   const activeItems = activeTab === 'patent' ? patents : papers;
 

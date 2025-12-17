@@ -45,9 +45,11 @@ const About: React.FC = () => {
                 <div key={index} className="relative pl-8 border-l border-slate-200">
                   <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-primary-600 ring-4 ring-white"></span>
                   <span className="block text-xs font-bold uppercase tracking-wider text-primary-700 mb-1">{exp.period}</span>
-                  <h4 className="text-lg font-bold text-navy-900">{exp.role}</h4>
+                  <h4 className="text-lg font-bold text-navy-900 leading-tight">{exp.role}</h4>
                   <div className="text-slate-500 text-sm mb-3 font-medium">{exp.company}</div>
-                  <p className="text-slate-600 text-sm leading-relaxed">{exp.description}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
+                    {exp.description}
+                  </p>
                 </div>
               ))}
             </div>

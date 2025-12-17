@@ -51,7 +51,7 @@ Sent via ${PROFILE.name} Personal Website`;
           <div>
             <span className="text-primary-400 font-bold text-xs uppercase tracking-widest mb-3 block">Get in Touch</span>
             <h2 className="text-4xl font-serif font-bold text-white mb-6">
-              Let's Discuss Your IP Strategy
+              Let's Discuss Your Innovation & Strategy
             </h2>
             <p className="text-slate-300 text-lg mb-8 font-light leading-relaxed">
               I am available for <strong>non-commercial, no-fee, and conflict-free discussions</strong>. Whether you are a student, researcher, or startup founder, I am happy to share my experience in IP strategy and tech transfer.

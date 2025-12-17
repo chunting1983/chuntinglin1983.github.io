@@ -6,21 +6,9 @@ let genAI: GoogleGenAI | null = null;
 
 const getClient = (): GoogleGenAI => {
   if (!genAI) {
-    // Safety check for process.env in browser environments
-    let apiKey: string | undefined;
-    try {
-      if (typeof process !== 'undefined' && process.env) {
-        apiKey = process.env.API_KEY;
-      }
-    } catch (e) {
-      console.warn("Could not access process.env", e);
-    }
-    
-    if (!apiKey) {
-      console.warn("Gemini API Key is missing. Chat functionality will be limited.");
-    }
-    
-    genAI = new GoogleGenAI({ apiKey: apiKey || 'dummy-key-for-ui-render' });
+    // Initialize the client with the API key from the environment variable.
+    // As per guidelines, we assume process.env.API_KEY is valid and accessible.
+    genAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
   return genAI;
 };

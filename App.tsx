@@ -2,11 +2,11 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import ImpactMetrics from './components/ImpactMetrics';
 import Services from './components/Services';
 import Speeches from './components/Speeches';
 import Publications from './components/Publications';
 import ContactForm from './components/ContactForm';
-import AIChat from './components/AIChat';
 import { PROFILE } from './constants';
 
 const App: React.FC = () => {
@@ -17,13 +17,12 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <About />
+        <ImpactMetrics />
         <Services />
         <Speeches />
         <Publications />
         <ContactForm />
       </main>
-
-      <AIChat />
 
       <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

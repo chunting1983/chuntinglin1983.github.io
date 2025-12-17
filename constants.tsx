@@ -79,7 +79,7 @@ export const PROFILE = {
 export const SERVICES: ServiceItem[] = [
   {
     title: "Industry-Academic Collaboration",
-    description: "Building partnerships between government, corporates, and academia. Leading the Hermes-Epitek Joint Innovation Platform to scout and match deep-tech technologies.",
+    description: "Building partnerships with government, corporates, and academia. Leading Joint Innovation Platforms with corporates to provide deep tech scouting, screening, and matching services.",
     icon: <Icons.Handshake />,
   },
   {
@@ -96,28 +96,52 @@ export const SERVICES: ServiceItem[] = [
 
 export const EXPERIENCE: Experience[] = [
   {
-    role: "Chief Operating Officer",
-    company: "Operations Center for Industry Collaboration, NTHU",
+    role: "Chief Operating Officer, OCIC",
+    company: "National Tsing Hua University (NTHU), Taiwan",
     period: "Jul 2024 – Present",
-    description: "Lead the Industrial Liaison Officers (ILO) team. Drive patent commercialization through demand-driven strategies and build global innovation partnerships.",
+    description: `1. Industrial Liaison: Lead NTHU’s Industrial Liaison Officers (ILO) team, building partnerships with government, corporates, and academia. Drive the growth of patent commercialization and licensing through demand-driven strategies.
+2. IP Promotion: Tripled NTHU's annual patent transactions in two years (fewer than 30/y in 2022 to 90/y in 2024) and doubled IP transaction contract value.
+3. Global Partnership & Innovation Ecosystem: Engage with global startups to foster collaboration with Taiwan’s innovation ecosystem. Represent OCIC in strategic dialogues with partners including Heron, UAiTED (17 universities), and the NSTC National Tech Commercialization Platform (46 universities).`,
   },
   {
     role: "Division Manager / Industrial Liaison Officer",
     company: "Technology Transfer Division, OCIC, NTHU",
     period: "Oct 2021 – Jun 2024",
-    description: "Oversaw a 2000+ patent portfolio. Launched the Tsing-Hua Hermes-Epitek Joint Innovation Platform. Tripled annual patent transactions from <30 to 90 per year.",
+    description: `1. IP Promotion: Oversaw NTHU’s 2000+ patent portfolio, managing portfolio planning, transaction design, and promotion strategies.
+2. Joint Innovation Platform: Designed and launched university-led deep-tech scouting, matching and commercialization platform for corporate partners.
+3. Startup Mentoring & Acceleration: Coached 10+ deep-tech ventures across semiconductors, biotech, and new energy on IP strategy, licensing structures, and investor communication.`,
   },
   {
     role: "Director, General Manager Office",
     company: "Neuboron Medtech, China",
     period: "Jun 2019 – Sep 2021",
-    description: "Led IP strategy and international partnerships. Managed a global portfolio of 600+ BNCT patents and supported US-China Joint Ventures.",
+    description: `Promoted from Manager to Director within 6 months; led management, IP strategy, and international partnerships.
+- Coordinated cross-functional operations across R&D, IP, regulatory affairs, legal, and global partnerships (US, EU, and Asia).
+- Managed a global portfolio of 600+ BNCT patents; led freedom-to-operate (FTO) analyses for China's first accelerator-based BNCT system.
+- Co-inventor on 10+ granted BNCT patents; participated in R&D of BNCT target systems.`,
   },
   {
-    role: "Researcher",
-    company: "National Institutes of Applied Research (NARLabs)",
-    period: "Nov 2008 – May 2019",
-    description: "Served as Associate Researcher and seconded to the Executive Yuan's Office of Science and Technology. Contributed to national S&T policy and autonomous vehicle regulations.",
+    role: "Researcher (Secondment), Office of Science and Technology",
+    company: "Executive Yuan, Taiwan (National Institutes of Applied Research)",
+    period: "Aug 2018 – May 2019",
+    description: `Appointed to Taiwan’s central policy think tank for S&T under the Executive Yuan.
+- Contributed to policy formulation, regulatory frameworks, and national budget planning for smart mobility and autonomous vehicle ecosystems.
+- Coordinated the policy communication for Taiwan’s first autonomous vehicle testing field (Shalun, Tainan).`,
+  },
+  {
+    role: "Associate Researcher, Headquarters",
+    company: "National Institutes of Applied Research (NARLabs), Taiwan",
+    period: "Jan 2017 – Jul 2018",
+    description: `- Established standardized legal document review processes (MOUs, licensing, joint research) across 10 national research centers.
+- Advised researchers on IP deployment, licensing structures, and due diligence; drafted key business terms for industry-academia collaborations.`,
+  },
+  {
+    role: "Associate Researcher, National Center for Instrumentation Research",
+    company: "National Institutes of Applied Research (NARLabs), Taiwan",
+    period: "Nov 2008 – Jan 2017",
+    description: `- Focused on micro-nano, electrochemistry, and surface analysis while pursuing PhD at NTHU. Authored 30+ SCI papers and patents with expertise in CVD, PVD, TEM, SEM, AFM, etc.
+- Provided IP consultancy to over 100 researchers, conducting prior art searches and patent analysis.
+- Selected for the MMOT Program at George Washington University and UW, specializing in IP law, tech transfer, and investment evaluation.`,
   },
 ];
 
@@ -227,7 +251,7 @@ export const PUBLICATIONS: Publication[] = [
   { type: 'paper', title: "Rapid fabrication of three-dimensional gold dendritic nanoforests for visible light-enhanced methanol oxidation", journalOrId: "Electrochimica Acta, 192, 15", date: "2016", authors: "C.-T. Lin, M.-N. Chang, H. J. Huang, C.-H. Chen, R.-J. Sun, B.-H. Liao, Y.-F. Chou Chau, C.-N. Hsiao, M.-H. Shiao*, F.-G. Tseng*" },
   { type: 'paper', title: "Facile preparation of a platinum silicide nanoparticle-modified tip apex for scanning Kelvin probe microscopy", journalOrId: "Nanoscale Research Letters, 10 (1), 401", date: "2015", authors: "C.-T. Lin, Y.-W. Chen, J. Su, C.-T. Wu, C.-N. Hsiao, M.-H. Shiao*, M.-N. Chang*" },
   { type: 'paper', title: "A facile approach to prepare silicon-based Pt-Ag tubular dendritic nano-forests (tDNFs) for solar-light-enhanced methanol oxidation reaction", journalOrId: "Nanoscale Research Letters, 10(1), 74", date: "2015", authors: "C.-T. Lin*, M.-H. Shiao, M.-N. Chang, N. Chu, Y.-W. Chen, Y.-H. Peng, B.-H. Liao, H. J. Huang, C.-N. Hsiao, F.-G. Tseng*" },
-  { type: 'paper', title: "Localized Electroless Ag Plating at a Tip Apex for Scanning Kelvin Probe Microscopy", journalOrId: "Japanese Journal of Applied Physics, 52, 06GF03", date: "2013", authors: "C.-T. Lin, M.-H. Yu, J. Su, P.-L. Chen, M.-H. Shiao, A. Nemcsics, M.-N. Chang*" },
+  { type: 'paper', title: "Localized Electroless Ag Plating at a Tip apex for Scanning Kelvin Probe Microscopy", journalOrId: "Japanese Journal of Applied Physics, 52, 06GF03", date: "2013", authors: "C.-T. Lin, M.-H. Yu, J. Su, P.-L. Chen, M.-H. Shiao, A. Nemcsics, M.-N. Chang*" },
   { type: 'paper', title: "A simple fabrication process of Pt-TiO2 hybrid electrode for photo-assisted methanol fuel cells", journalOrId: "Microelectronic Engineering, 88, 2644", date: "2011", authors: "C.-T. Lin*, H. J. Huang, J.-J. Yang, M.-H. Shiao" },
   { type: 'paper', title: "Novel gold dendritic nanoflowers deposited on titanium nitride for photoelectrochemical cells", journalOrId: "Journal of Solid State Electrochemistry, vol. 22, 3077", date: "2018", authors: "M.-H. Shiao, C.-T. Lin, H. J. Huang, P.-H. Chen, B.-H. Liao, F.-G. Tseng, Y.-S. Lin*" },
   { type: 'paper', title: "Novel Gold Dendritic Nanoforests Combined with Titanium Nitride for Visible-Light-Enhanced Chemical Degradation", journalOrId: "Nanomaterials 8(5), 282", date: "2018", authors: "M.-H. Shiao, C.-T. Lin, J.-J. Zeng and Y.-S. Lin" },
@@ -241,7 +265,7 @@ export const PUBLICATIONS: Publication[] = [
   { type: 'paper', title: "Active site of bimetallic heterogeneous catalyst by atomic resolution aberration-corrected STEM", journalOrId: "Applied Surface Science, 354, Part A,129", date: "2015", authors: "C.-N. Hsiao* and C.-T. Lin" },
   { type: 'paper', title: "Fabrication of High-activity Hybrid Pt@ZnO Catalyst on Carbon Cloth by Atomic Layer Deposition for Photo-assisted Electro-oxidation of Methanol", journalOrId: "Journal of Physical Chemistry C , 117, 11610", date: "2013", authors: "C.-Y. Su, Y.-C. Hsueh, C.-C. Kei, C.-T. Lin, and T.-P. Perng*" },
   { type: 'paper', title: "PMMA nanocolumn array fabricated by catalytic etching and nanomolding technique", journalOrId: "Microelectronic Engineering, 88, 2576", date: "2011", authors: "M.-J. Huang, C.-R. Yang, C.-M. Chang, C.-T. Lin, Y.-H. Tang, M.-H. Shiao, Y.-C. Chiou, R.-T. Lee" },
-  { type: 'paper', title: "Highly efficient CO2 bubble removal on carbon nanotube supported nanocatalysts for direct methanol fuel cell", journalOrId: "Journal of Power Sources 195, 1640", date: "2010", authors: "S.-L. Chen, C.-T. Lin, C.-C. Chieng, F.-G. Tseng*" },
+  { type: 'paper', title: "Highly efficient CO2 bubble removal on carbon nanotube supported nanocatalysts for direct methanol fuel cell", journalOrId: "Journal of Power Sources 195, 1640", date: "2010", authors: "S.-L. Chen, C.-T. Lin, C.-C. Chieng, f-G. Tseng*" },
   { type: 'paper', title: "Growth and detachment of chemical reaction-generated micro-bubbles on micro-textured catalyst", journalOrId: "Microfluidics and Nanofluidics 7, 807", date: "2009", authors: "S.-L. Chen, C.-T. Lin, C. Pan, C.-C. Chieng, F.-G. Tseng*" }
 ];
 
