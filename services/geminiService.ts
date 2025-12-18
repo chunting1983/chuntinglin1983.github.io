@@ -7,7 +7,7 @@ let genAI: GoogleGenAI | null = null;
 const getClient = (): GoogleGenAI => {
   if (!genAI) {
     // Initialize the client with the API key from the environment variable.
-    // As per guidelines, we assume process.env.API_KEY is valid and accessible.
+    // As per guidelines, we use process.env.API_KEY directly.
     genAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
   return genAI;
@@ -16,9 +16,9 @@ const getClient = (): GoogleGenAI => {
 export const initializeChat = async (): Promise<Chat> => {
   const ai = getClient();
   
-  // Create a new chat session
+  // Create a new chat session using the high-performance Gemini 3 Flash model.
   chatSession = ai.chats.create({
-    model: "gemini-2.5-flash",
+    model: "gemini-3-flash-preview",
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
       temperature: 0.7,
@@ -41,6 +41,7 @@ export const sendMessageToGemini = async function* (message: string) {
     const streamResult = await chatSession.sendMessageStream({ message });
     
     for await (const chunk of streamResult) {
+      // Use the .text property directly as it returns the string output.
       if (chunk.text) {
         yield chunk.text;
       }
@@ -51,6 +52,6 @@ export const sendMessageToGemini = async function* (message: string) {
     // Reset session on error to prevent stuck state
     chatSession = null;
     
-    yield "I apologize, but I'm having trouble processing your request right now. This might be due to a connection issue or configuration. Please feel free to use the contact form to reach Dr. Lin directly.";
+    yield "I apologize, but I'm having trouble processing your request right now. This might be due to a connection issue. Please feel free to use the contact form to reach Dr. Lin directly.";
   }
 };

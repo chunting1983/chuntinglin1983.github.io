@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Speeches from './components/Speeches';
 import Publications from './components/Publications';
 import ContactForm from './components/ContactForm';
+import AIChat from './components/AIChat';
 import { PROFILE } from './constants';
 
 const App: React.FC = () => {
@@ -23,6 +24,9 @@ const App: React.FC = () => {
         <Publications />
         <ContactForm />
       </main>
+
+      {/* AI Assistant Chatbot */}
+      <AIChat />
 
       <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
