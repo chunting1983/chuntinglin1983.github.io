@@ -21,7 +21,11 @@ const AIChat: React.FC = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (isOpen) {
+      // Small timeout to ensure the window has rendered before scrolling
+      const timer = setTimeout(scrollToBottom, 100);
+      return () => clearTimeout(timer);
+    }
   }, [messages, isOpen]);
 
   const handleSend = async () => {
@@ -48,8 +52,10 @@ const AIChat: React.FC = () => {
     try {
       const stream = sendMessageToGemini(userMessage.text);
       let fullText = '';
+      let hasReceivedData = false;
 
       for await (const chunk of stream) {
+         hasReceivedData = true;
          fullText += chunk;
          setMessages(prev => prev.map(msg => 
             msg.id === modelMessageId 
@@ -66,6 +72,11 @@ const AIChat: React.FC = () => {
 
     } catch (error) {
        console.error(error);
+       setMessages(prev => prev.map(msg => 
+        msg.id === modelMessageId 
+          ? { ...msg, text: "I'm sorry, I encountered an error. Please try again later.", isStreaming: false } 
+          : msg
+      ));
     } finally {
       setIsLoading(false);
     }
@@ -124,11 +135,15 @@ const AIChat: React.FC = () => {
              {isLoading && messages[messages.length-1].role === 'user' && (
                <div className="flex justify-start">
                  <div className="bg-white text-slate-800 shadow-sm border border-slate-100 rounded px-4 py-3">
-                    <span className="text-xs text-slate-400 animate-pulse">Thinking...</span>
+                    <div className="flex space-x-1 items-center h-4">
+                      <div className="w-1 h-1 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-1 h-1 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-1 h-1 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
                  </div>
                </div>
              )}
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="h-2" />
           </div>
 
           {/* Input Area */}

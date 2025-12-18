@@ -52,15 +52,11 @@
         }
     </script>
 
-    <!-- Global Shim for process.env (Required for browser-side Gemini SDK usage) -->
+    <!-- Safe Shim for process.env -->
     <script>
-        window.process = {
-            env: {
-                // The API key is injected into the execution context. 
-                // We ensure it's accessible globally to avoid ReferenceErrors.
-                API_KEY: "" 
-            }
-        };
+        if (typeof window.process === 'undefined') {
+            window.process = { env: {} };
+        }
     </script>
 
     <script type="importmap">
