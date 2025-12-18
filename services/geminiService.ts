@@ -1,45 +1,38 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../constants";
 
-// Initialize the GenAI client once using the environment variable directly.
-// As per guidelines, we use process.env.API_KEY directly and name the parameter.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 let chatSession: Chat | null = null;
 
-export const initializeChat = async (): Promise<Chat> => {
-  // Use ai.chats.create to start a conversation session.
-  chatSession = ai.chats.create({
-    model: "gemini-3-flash-preview",
-    config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
-      temperature: 0.7,
-    },
-  });
-  
+/**
+ * Initializes or retrieves the existing chat session.
+ * We follow the rule of creating the GoogleGenAI instance right before use
+ * to ensure the API key is correctly pulled from the environment.
+ */
+export const getChatSession = async (): Promise<Chat> => {
+  if (!chatSession) {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    chatSession = ai.chats.create({
+      model: "gemini-3-flash-preview",
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+        temperature: 0.7,
+      },
+    });
+  }
   return chatSession;
 };
 
 export const sendMessageToGemini = async function* (message: string) {
   try {
-    // Check for API key existence before attempting to call the API
-    if (!process.env.API_KEY) {
-      yield "The AI assistant is currently in offline mode because the API key is not configured. Please use the contact form to reach Dr. Lin directly.";
-      return;
-    }
+    // Obtain the session (initializes if necessary)
+    const session = await getChatSession();
 
-    if (!chatSession) {
-      await initializeChat();
-    }
-
-    if (!chatSession) {
-      throw new Error("Failed to initialize chat session");
-    }
-
-    // Use sendMessageStream which takes the message parameter.
-    const streamResult = await chatSession.sendMessageStream({ message });
+    // sendMessageStream only accepts the message parameter.
+    const streamResult = await session.sendMessageStream({ message });
     
     for await (const chunk of streamResult) {
-      // Access the .text property directly to get the generated content string.
+      // Accessing the .text property directly from the response chunk.
+      // We do not use chunk.text() as it is a property, not a method.
       if (chunk.text) {
         yield chunk.text;
       }
@@ -47,13 +40,13 @@ export const sendMessageToGemini = async function* (message: string) {
   } catch (error: any) {
     console.error("Error sending message to Gemini:", error);
     
-    // In case of any error (like a closed session), reset the session so it can be re-initialized.
+    // Reset session on critical errors to allow re-initialization on next attempt
     chatSession = null;
     
-    if (error?.message?.includes("API_KEY")) {
-      yield "I'm sorry, my API key seems to be invalid or missing. Please contact Dr. Lin through the form below.";
+    if (error?.message?.includes("API_KEY") || error?.message?.includes("403") || error?.message?.includes("401")) {
+      yield "I'm sorry, I'm having trouble accessing my API key right now. Please try again in a moment or contact Dr. Lin directly via the contact form.";
     } else {
-      yield "I apologize, but I'm having trouble connecting right now. Please feel free to try again or use the contact form.";
+      yield "I apologize, but I encountered an unexpected error while processing your request. Please feel free to try again.";
     }
   }
 };

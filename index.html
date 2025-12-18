@@ -52,11 +52,9 @@
         }
     </script>
 
-    <!-- Safe Shim for process.env -->
+    <!-- Essential Shim for process.env in Browser -->
     <script>
-        if (typeof window.process === 'undefined') {
-            window.process = { env: {} };
-        }
+        window.process = window.process || { env: {} };
     </script>
 
     <script type="importmap">
