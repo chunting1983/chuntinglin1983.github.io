@@ -1,23 +1,20 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  build: {
+    // Increase the chunk size warning limit to 1000kB (1MB) as suggested by the build logs
+    // for single-page applications with significant static content.
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        // Manual chunking strategy to separate large data from the main application logic
+        manualChunks(id) {
+          if (id.includes('constants.tsx')) {
+            return 'content-data';
+          }
         }
       }
-    };
+    }
+  }
 });
