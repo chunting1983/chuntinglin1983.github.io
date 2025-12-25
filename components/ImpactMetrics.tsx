@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const ImpactMetrics: React.FC = () => {
@@ -18,12 +19,6 @@ const ImpactMetrics: React.FC = () => {
       value: "2000+",
       label: "Patents Managed",
       description: "Strategic oversight of NTHU's massive multidisciplinary patent portfolio.",
-      highlight: false
-    },
-    {
-      value: "600+",
-      label: "Global IP Assets",
-      description: "Managed global BNCT patent portfolio across US, EU, and Asian markets.",
       highlight: false
     },
     {
@@ -51,7 +46,7 @@ const ImpactMetrics: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {metrics.map((m, idx) => (
             <div 
               key={idx} 

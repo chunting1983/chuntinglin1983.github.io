@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Icons } from '../constants';
 import { ChatMessage } from '../types';
@@ -22,40 +23,51 @@ const AIChat: React.FC = () => {
 
   useEffect(() => {
     if (isOpen) {
-      // Small timeout to ensure the window has rendered before scrolling
-      const timer = setTimeout(scrollToBottom, 100);
-      return () => clearTimeout(timer);
+      scrollToBottom();
     }
   }, [messages, isOpen]);
 
   const handleSend = async () => {
     if (!inputValue.trim() || isLoading) return;
 
+    const currentInput = inputValue.trim();
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      text: inputValue
+      text: currentInput
     };
 
+    // 1. Prepare history for the API (exclude current message)
+    const history = messages.map(msg => ({
+      role: msg.role,
+      parts: [{ text: msg.text }]
+    }));
+
+    // 2. Update UI state
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
     const modelMessageId = (Date.now() + 1).toString();
-    setMessages(prev => [...prev, {
-      id: modelMessageId,
-      role: 'model',
-      text: '',
-      isStreaming: true
-    }]);
-
+    
     try {
-      const stream = sendMessageToGemini(userMessage.text);
+      // 3. Start streaming from service
+      const stream = sendMessageToGemini(currentInput, history);
       let fullText = '';
       let hasReceivedData = false;
 
       for await (const chunk of stream) {
-         hasReceivedData = true;
+         if (!hasReceivedData) {
+            hasReceivedData = true;
+            // Add the model message to the list once the first chunk arrives
+            setMessages(prev => [...prev, {
+              id: modelMessageId,
+              role: 'model',
+              text: '',
+              isStreaming: true
+            }]);
+         }
+         
          fullText += chunk;
          setMessages(prev => prev.map(msg => 
             msg.id === modelMessageId 
@@ -72,11 +84,12 @@ const AIChat: React.FC = () => {
 
     } catch (error) {
        console.error(error);
-       setMessages(prev => prev.map(msg => 
-        msg.id === modelMessageId 
-          ? { ...msg, text: "I'm sorry, I encountered an error. Please try again later.", isStreaming: false } 
-          : msg
-      ));
+       setMessages(prev => [...prev, {
+        id: modelMessageId,
+        role: 'model',
+        text: "I'm sorry, I encountered an error. Please try again later.",
+        isStreaming: false
+      }]);
     } finally {
       setIsLoading(false);
     }
@@ -132,7 +145,7 @@ const AIChat: React.FC = () => {
                 </div>
               </div>
             ))}
-             {isLoading && messages[messages.length-1].role === 'user' && (
+             {isLoading && messages[messages.length - 1].role === 'user' && (
                <div className="flex justify-start">
                  <div className="bg-white text-slate-800 shadow-sm border border-slate-100 rounded px-4 py-3">
                     <div className="flex space-x-1 items-center h-4">
