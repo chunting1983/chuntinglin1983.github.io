@@ -69,7 +69,7 @@ export const Icons = {
 
 export const PROFILE = {
   name: "Dr. CT Lin (林峻霆)",
-  title: "Chief Operating Officer, OCIC, NTHU",
+  title: "Chief Operating Officer, Operations Center for Industry Collaboration, NTHU",
   tagline: "Bridging Deep-Tech Innovation and Commercial Success.",
   bio: `I am a seasoned professional with 15+ years of multidisciplinary experience spanning deep-tech startups, industry-academic collaboration, and national innovation policy. Currently serving as the Chief Operating Officer at National Tsing Hua University's Operations Center for Industry Collaboration, I specialize in open innovation ecosystems, IP deployment & commercialization, and deep-tech startup acceleration. My background includes pivotal roles in government think tanks and cross-border biotech ventures, with technical expertise in BNCT, nanomaterials, surface science, and electro-chemistry.`,
   linkedin: "https://www.linkedin.com/in/CTLIN1983",
@@ -96,20 +96,19 @@ export const SERVICES: ServiceItem[] = [
 
 export const EXPERIENCE: Experience[] = [
   {
-    role: "Chief Operating Officer, OCIC",
+    role: "Chief Operating Officer, Operations Center for Industry Collaboration",
     company: "National Tsing Hua University (NTHU), Taiwan",
     period: "Jul 2024 – Present",
-    description: `1. Industrial Liaison: Lead NTHU’s Industrial Liaison Officers (ILO) team, building partnerships with government, corporates, and academia. Drive the growth of patent commercialization and licensing through demand-driven strategies.
-2. IP Promotion: Tripled NTHU's annual patent transactions in two years (fewer than 30/y in 2022 to 90/y in 2024) and doubled IP transaction contract value.
-3. Global Partnership & Innovation Ecosystem: Engage with global startups to foster collaboration with Taiwan’s innovation ecosystem. Represent OCIC in strategic dialogues with partners including Heron, UAiTED (17 universities), and the NSTC National Tech Commercialization Platform (46 universities).`,
+    description: `- Industrial Liaison: Lead NTHU’s Industrial Liaison activities, building partnerships with government, corporates, and academia. Drive the growth of patent commercialization and licensing through demand-driven strategies.
+- IP Promotion: Tripled NTHU's annual patent transactions in two years (fewer than 30/y in 2022 to 90/y in 2024) and doubled IP transaction contract value.`,
   },
   {
     role: "Division Manager / Industrial Liaison Officer",
-    company: "Technology Transfer Division, OCIC, NTHU",
+    company: "Technology Transfer Division, Operations Center for Industry Collaboration, NTHU",
     period: "Oct 2021 – Jun 2024",
-    description: `1. IP Promotion: Oversaw NTHU’s 2000+ patent portfolio, managing portfolio planning, transaction design, and promotion strategies.
-2. Joint Innovation Platform: Designed and launched university-led deep-tech scouting, matching and commercialization platform for corporate partners.
-3. Startup Mentoring & Acceleration: Coached 10+ deep-tech ventures across semiconductors, biotech, and new energy on IP strategy, licensing structures, and investor communication.`,
+    description: `- IP Promotion: Oversaw NTHU’s 2000+ patent portfolio, managing portfolio planning, transaction design, and promotion strategies.
+- Joint Innovation Platform: Designed and launched university-led deep-tech scouting, matching and commercialization platform for corporate partners.
+- Startup Mentoring & Acceleration: Coached 10+ deep-tech ventures across semiconductors, biotech, and new energy on IP strategy, licensing structures, and investor communication.`,
   },
   {
     role: "Director, General Manager Office",
